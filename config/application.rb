@@ -33,3 +33,5 @@ module Pokedex
     config.api_only = true
   end
 end
+
+
