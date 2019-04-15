@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @token = JWT.encode({user_id: @user.id}, "secret")
-      byebug
+      # byebug
       render json: { user: @user.name, jwt: @token }, status: :created
     else
       render json: { error: 'failed to create user' }, status: :not_acceptable
@@ -28,5 +28,5 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :password, :email)
-    end 
+    end
 end
