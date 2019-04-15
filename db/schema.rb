@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_201356) do
 
   create_table "pokemons", force: :cascade do |t|
     t.string "name"
-    t.string "location"
-    t.integer "level"
+    t.string "location", default: "Kanto"
+    t.integer "level", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "type_id"

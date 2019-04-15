@@ -2,8 +2,8 @@ class CreatePokemons < ActiveRecord::Migration[5.2]
   def change
     create_table :pokemons do |t|
       t.string :name
-      t.string :location
-      t.integer :level
+      t.string :location, default: 'Kanto'
+      t.integer :level, default: 1
 
       t.timestamps
     end
