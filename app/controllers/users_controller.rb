@@ -1,4 +1,4 @@
-class Users < ApplicationController
+class UsersController < ApplicationController
   before_action :find_user, only: [:show, :update, :destory]
   def index
     @users = User.all
@@ -10,12 +10,15 @@ class Users < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.create(user_params)
 
-    if @user.save
-      render json: @user
+    if @user.valid?
+      @token = JWT.encode({user_id: @user.id}, "secret")
+      byebug
+      render json: { user: @user.name, jwt: @token }, status: :created
     else
-      render json: @user.errors
+      render json: { error: 'failed to create user' }, status: :not_acceptable
+    end
   end
 
   private
