@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @token = JWT.encode({user_id: @user.id}, "secret")
-      byebug
       render json: { user: @user.name, jwt: @token }, status: :created
     else
       render json: { error: 'failed to create user' }, status: :not_acceptable
